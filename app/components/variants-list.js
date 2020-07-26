@@ -12,7 +12,6 @@ import ListSubheader from "@material-ui/core/ListSubheader";
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
-import CheckBoxOutlinedIcon from '@material-ui/icons/CheckBoxOutlined';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
 import {
@@ -108,14 +107,12 @@ function VariantsList({
               <ListItem
                 button
                 onClick={() => { handleVariantClick(variantKey) }}
-                
+                selected={selectedVariant === variantKey}
               >
                 <ListItemIcon>
-                  {selectedVariant === variantKey ? <CheckBoxOutlinedIcon /> : <CheckBoxOutlineBlankIcon /> 
-                  }
-                  
+                  <CheckBoxOutlineBlankIcon />
                 </ListItemIcon>
-                <Typography variant="body1" >{variantKey}</Typography>
+                <Typography variant={selectedVariant === variantKey ? "colorPrimary" : "body2"}>{variantKey}</Typography>
               </ListItem>
             </React.Fragment>
           })}
