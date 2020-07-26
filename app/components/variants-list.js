@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -12,6 +12,7 @@ import ListSubheader from "@material-ui/core/ListSubheader";
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
+import CheckBoxOutlinedIcon from '@material-ui/icons/CheckBoxOutlined';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
 import {
@@ -51,6 +52,14 @@ function VariantsList({
 }) {
   const classes = useStyles();
   const dispatch = useDispatch();
+
+  const {
+    selectedVariant
+  } = useSelector((state) => {
+    return {
+      selectedVariant: state.selectedVariant
+    };
+  });
 
   function handleVariantClick(variantKey) {
     dispatch({
@@ -99,9 +108,12 @@ function VariantsList({
               <ListItem
                 button
                 onClick={() => { handleVariantClick(variantKey) }}
+                
               >
                 <ListItemIcon>
-                  <CheckBoxOutlineBlankIcon />
+                  {selectedVariant === variantKey ? <CheckBoxOutlinedIcon /> : <CheckBoxOutlineBlankIcon /> 
+                  }
+                  
                 </ListItemIcon>
                 <Typography variant="body1" >{variantKey}</Typography>
               </ListItem>
